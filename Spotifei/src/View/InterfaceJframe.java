@@ -5,23 +5,23 @@
 package View;
 
 import java.awt.event.ActionListener;
+import Controller.Controller;
 
 /**
  *
- * @author Pichau
+ * @author unifjbarreto
  */
 public class InterfaceJframe extends javax.swing.JFrame {
     
     
+    public Controller controller;
 
-    /**
-     * Creates new form InterfaceJframe
-     */
-    public InterfaceJframe() {
+    public InterfaceJframe(Controller controller) {
         initComponents();
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        this.controller = controller;
 
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,49 +99,15 @@ public class InterfaceJframe extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
-        InterfaceCadastro cadastroDialog = new InterfaceCadastro(this, true);
-        cadastroDialog.setVisible(true);
+        this.controller.abrirCadastro();
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        InterfaceLogin loginDialog = new InterfaceLogin(this, true);
-        loginDialog.setVisible(true);
+        controller.abrirLogin();
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfaceJframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfaceJframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfaceJframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfaceJframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InterfaceJframe().setVisible(true);
-            }
-        });
-    }
+
     
     
     // Método para adicionar evento de Login

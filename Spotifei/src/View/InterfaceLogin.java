@@ -1,7 +1,10 @@
 package View;
 
-import Model.AcessoBanco;
-import javax.swing.JOptionPane;
+import Controller.Controller;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 
 
@@ -12,17 +15,14 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Pichau
+ * @author unifjbarreto
  */
 public class InterfaceLogin extends javax.swing.JDialog {
 
-    /**
-     * Creates new form InterfaceLogin
-     * @param parent
-     * @param modal
-     */
-    public InterfaceLogin(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+ 
+    private final Controller controller;
+    public InterfaceLogin(Controller controller) {
+        this.controller = controller;
         initComponents();
     }
 
@@ -99,69 +99,54 @@ public class InterfaceLogin extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        String email = txtEmail.getText();
-        String senha = new String(txtSenha.getPassword());
-        AcessoBanco acesso = new AcessoBanco();
-        boolean loginValido = acesso.validarLogin(email, senha); 
-
-        if (loginValido) {
-            JOptionPane.showMessageDialog(this, "Login realizado com sucesso!");
-
-            // Fechar a janela de login (InterfaceJframe)
-            this.dispose(); // Isso vai fechar a janela de login
-
-            // Abrir a janela de menu do usuário com o nome do usuário logado
-            String nomeUsuario = txtEmail.getText(); // Supondo que o nome do usuário venha do campo email
-            new InterfaceMenu(nomeUsuario).setVisible(true); // Chama o menu do usuário
-        } else {
-            JOptionPane.showMessageDialog(this, "Email ou senha incorretos.");
-        }
+        controller.Logar();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfaceLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfaceLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfaceLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfaceLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                InterfaceLogin dialog = new InterfaceLogin(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+ 
+
+    public JButton getBtnLogin() {
+        return btnLogin;
+    }
+
+    public void setBtnLogin(JButton btnLogin) {
+        this.btnLogin = btnLogin;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JTextField getTxtEmail() {
+        return txtEmail;
+    }
+
+    public void setTxtEmail(JTextField txtEmail) {
+        this.txtEmail = txtEmail;
+    }
+
+    public JPasswordField getTxtSenha() {
+        return txtSenha;
+    }
+
+    public void setTxtSenha(JPasswordField txtSenha) {
+        this.txtSenha = txtSenha;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

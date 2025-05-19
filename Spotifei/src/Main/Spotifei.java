@@ -5,7 +5,7 @@
 package Main;
 
 import View.InterfaceJframe;
-
+import Controller.Controller;
 
 /**
  *
@@ -17,9 +17,8 @@ public class Spotifei {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(() -> {
-            new InterfaceJframe().setVisible(true);
-        });
+        Controller controller = new Controller();
+        
     }
     }
     
