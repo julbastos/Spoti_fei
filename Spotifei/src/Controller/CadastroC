@@ -1,0 +1,55 @@
+package Controller;
+
+import Model.Usuario;
+import View.InterfaceJframe;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class LoginC {
+
+    private InterfaceJframe view;
+    private Usuario model;
+    private String nome;
+
+    public LoginC(InterfaceJframe view, Usuario model) {
+        this.view = view;
+        this.model = model;
+
+        this.view.adicionarAcaoLogin(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                realizarLogin();
+            }
+        });
+
+   
+        this.view.adicionarAcaoCadastro(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                realizarCadastro();
+            }
+        });
+    }
+
+    private void realizarLogin() {
+
+    String email = view.getEmail();
+    String senha = view.getSenha();
+
+    Model.AcessoBanco acesso = new Model.AcessoBanco();
+    boolean loginValido = acesso.validarLogin(email, senha);
+
+    if (loginValido) {
+        view.setMensagem("Login realizado com sucesso.");
+        View.InterfaceJframe menu = new View.InterfaceJframe();
+        menu.setVisible(true);
+        view.dispose();
+    } else {
+        view.setMensagem("Email ou senha inválidos.");
+    }
+}
+
+    private void realizarCadastro() {
+        view.setMensagem("Bem-Vindo ao SpotiFEI!");
+    }
+}
