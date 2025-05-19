@@ -1,0 +1,178 @@
+CREATE TABLE public.usuarios (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    senha VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE public.musicas (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    artista VARCHAR(100) NOT NULL,
+    genero VARCHAR(50) NOT NULL 
+);
+
+CREATE TABLE public.playlists (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    id_usuario INTEGER NOT NULL REFERENCES public.usuarios(id)
+);
+
+CREATE TABLE public.playlist_musicas (
+    id_playlist INTEGER NOT NULL REFERENCES public.playlists(id) ON DELETE CASCADE,
+    id_musica INTEGER NOT NULL REFERENCES public.musicas(id) ON DELETE CASCADE,
+    PRIMARY KEY (id_playlist, id_musica)
+);
+
+CREATE TABLE public.curtidas (
+    id_usuario INTEGER NOT NULL REFERENCES public.usuarios(id) ON DELETE CASCADE,
+    id_musica INTEGER NOT NULL REFERENCES public.musicas(id) ON DELETE CASCADE,
+    status BOOLEAN NOT NULL,
+    PRIMARY KEY (id_usuario, id_musica)
+);
+
+CREATE TABLE public.historico (
+    id SERIAL PRIMARY KEY,
+    id_usuario INTEGER NOT NULL REFERENCES public.usuarios(id) ON DELETE CASCADE,
+    id_musica INTEGER NOT NULL REFERENCES public.musicas(id) ON DELETE CASCADE,
+    data TIMESTAMP NOT NULL,
+    acao VARCHAR(100) NOT NULL
+);
+
+-- inserir historico de exemplo
+INSERT INTO public.historico (id_usuario, id_musica, data, acao) VALUES
+(1, 1, '2023-01-01 10:00:00', 'curtida'),
+(2, 2, '2023-01-01 10:00:00', 'curtida');
+
+-- Inserir usuários de exemplo
+INSERT INTO public.usuarios (nome, email, senha) VALUES
+('João Silva', 'joao@gmail.com', '1234'),
+('Maria Souza', 'maria@gmail.com', 'abcd');
+
+
+
+
+-- Inserir músicas de exemplo
+INSERT INTO public.musicas (nome, artista, genero) VALUES
+('Shape of You', 'Ed Sheeran', 'Pop'),
+('Blinding Lights', 'The Weeknd', 'Pop'),
+('Smells Like Teen Spirit', 'Nirvana', 'Rock'),
+('Garota de Ipanema', 'Tom Jobim', 'Bossa Nova'),
+('Rap God', 'Eminem', 'Rap'),
+('Bohemian Rhapsody', 'Queen', 'Rock'),
+('Hotel California', 'Eagles', 'Rock'),
+('Stairway to Heaven', 'Led Zeppelin', 'Rock'),
+('Imagine', 'John Lennon', 'Pop'),
+('Hey Jude', 'The Beatles', 'Pop'),
+('Like a Rolling Stone', 'Bob Dylan', 'Rock'),
+('Billie Jean', 'Michael Jackson', 'Pop'),
+('Sweet Child O'' Mine', 'Guns N'' Roses', 'Rock'),
+('Wonderwall', 'Oasis', 'Britpop'),
+('Yesterday', 'The Beatles', 'Pop'),
+('No Woman, No Cry', 'Bob Marley', 'Reggae'),
+('Purple Haze', 'Jimi Hendrix', 'Rock'),
+('Hallelujah', 'Leonard Cohen', 'Folk'),
+('What''s Going On', 'Marvin Gaye', 'Soul'),
+('Born to Run', 'Bruce Springsteen', 'Rock'),
+('One', 'U2', 'Rock'),
+('Losing My Religion', 'R.E.M.', 'Alternative Rock'),
+('Creep', 'Radiohead', 'Alternative Rock'),
+('Zombie', 'The Cranberries', 'Alternative Rock'),
+('Don''t Stop Me Now', 'Queen', 'Rock'),
+('Africa', 'Toto', 'Pop Rock'),
+('Take On Me', 'a-ha', 'Synth-pop'),
+('Livin'' on a Prayer', 'Bon Jovi', 'Rock'),
+('Every Breath You Take', 'The Police', 'New Wave'),
+('With or Without You', 'U2', 'Rock'),
+('Under Pressure', 'Queen & David Bowie', 'Rock'),
+('Come As You Are', 'Nirvana', 'Grunge'),
+('November Rain', 'Guns N'' Roses', 'Rock'),
+('Another Brick in the Wall, Pt. 2', 'Pink Floyd', 'Progressive Rock'),
+('Paint It Black', 'The Rolling Stones', 'Rock'),
+('Summertime Sadness', 'Lana Del Rey', 'Alternative/Indie'),
+('Video Games', 'Lana Del Rey', 'Alternative/Indie'),
+('Born to Die', 'Lana Del Rey', 'Alternative/Indie'),
+('Circles', 'Post Malone', 'Hip Hop'),
+('Sunflower', 'Post Malone', 'Hip Hop'),
+('Rockstar', 'Post Malone', 'Hip Hop'),
+('Like a Stone', 'Audioslave', 'Alternative Rock'),
+('Cochise', 'Audioslave', 'Alternative Rock'),
+('Show Me How to Live', 'Audioslave', 'Alternative Rock'),
+('Californication', 'Red Hot Chili Peppers', 'Alternative Rock'),
+('Under the Bridge', 'Red Hot Chili Peppers', 'Alternative Rock'),
+('Can''t Stop', 'Red Hot Chili Peppers', 'Alternative Rock'),
+('Throne', 'Bring Me The Horizon', 'Metalcore'),
+('Can You Feel My Heart', 'Bring Me The Horizon', 'Metalcore'),
+('Drown', 'Bring Me The Horizon', 'Alternative Rock'),
+('Lights', 'Ellie Goulding', 'Electropop'),
+('Burn', 'Ellie Goulding', 'Electropop'),
+('Love Me Like You Do', 'Ellie Goulding', 'Electropop');
+
+-- Inserir playlists de exemplo
+INSERT INTO public.playlists (nome, id_usuario) VALUES
+('Favoritas João', 1),
+('Relax Maria', 2);
+
+-- Inserir músicas nas playlists
+INSERT INTO public.playlist_musicas (id_playlist, id_musica) VALUES
+(1, 1),
+(1, 3),
+(2, 2),
+(2, 4);
+
+-- Inserir curtidas de exemplo
+INSERT INTO public.curtidas (id_usuario, id_musica, status) VALUES
+(1, 1, true),
+(1, 3, true),
+(2, 2, true),
+(2, 4, false);
+
+
+-- Verificar todos os usuários
+SELECT * FROM public.usuarios;
+
+-- Verificar todas as músicas
+SELECT * FROM public.musicas;
+
+-- Verificar todas as playlists
+SELECT * FROM public.playlists;
+
+-- Verificar todas as músicas nas playlists (apenas IDs)
+SELECT * FROM public.playlist_musicas;
+
+-- Verificar músicas nas playlists com nomes de usuário e música
+SELECT 
+    u.nome AS usuario,
+    p.nome AS playlist,
+    m.nome AS musica,
+    m.artista,
+    m.genero
+FROM public.playlist_musicas pm
+JOIN public.playlists p ON p.id = pm.id_playlist
+JOIN public.usuarios u ON u.id = p.id_usuario
+JOIN public.musicas m ON m.id = pm.id_musica;
+
+-- Verificar todas as curtidas (apenas IDs)
+SELECT * FROM public.curtidas;
+
+-- Verificar curtidas com nomes de usuários e músicas
+SELECT 
+    u.nome AS usuario, 
+    m.nome AS musica, 
+    c.status
+FROM public.curtidas c
+JOIN public.usuarios u ON u.id = c.id_usuario
+JOIN public.musicas m ON m.id = c.id_musica;
+
+-- Verificar todo o histórico (apenas IDs)
+SELECT * FROM public.historico;
+
+-- Verificar histórico com nomes de usuário, música e ação
+SELECT 
+    u.nome AS usuario, 
+    m.nome AS musica, 
+    h.data, 
+    h.acao
+FROM public.historico h
+JOIN public.usuarios u ON u.id = h.id_usuario
+JOIN public.musicas m ON m.id = h.id_musica;
