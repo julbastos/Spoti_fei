@@ -298,7 +298,7 @@ public class Controller {
                 btnRemoverDescurtida.addActionListener(e -> {
                     boolean sucesso = Model.CurtidaBanco.avaliarMusica(idUsuario, m.getId(), true);
                     if (sucesso) {
-                        javax.swing.JOptionPane.showMessageDialog(interfaceDescurtidas, "Música marcada como curtida!");
+                        javax.swing.JOptionPane.showMessageDialog(interfaceDescurtidas, "Música marcada!");
                         carregarDescurtidas();
                     } else {
                         javax.swing.JOptionPane.showMessageDialog(interfaceDescurtidas, "Erro ao atualizar.");
