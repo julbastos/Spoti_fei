@@ -24,7 +24,7 @@ RA: 22124071-6
 
 ## Descrição do Projeto
 
-O Spotifei é uma aplicação desktop desenvolvida em Java, inspirada em plataformas de streaming de música como o Spotify. O objetivo é permitir que usuários possam criar playlists, curtir/descurtir músicas, visualizar histórico de ações e gerenciar músicas. O sistema utiliza uma arquitetura MVC (Model-View-Controller) e faz integração com um banco de dados PostgreSQL.
+O Spotifei é uma aplicação desktop desenvolvida em Java. O objetivo é permitir que usuários possam criar playlists, curtir/descurtir músicas, visualizar histórico de ações e gerenciar músicas. O sistema utiliza uma arquitetura MVC (Model-View-Controller) e faz integração com um banco de dados PostgreSQL.
 
 ---
 
