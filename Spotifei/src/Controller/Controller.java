@@ -222,7 +222,7 @@ public class Controller {
             // Adicionar a tabela a um JScrollPane para permitir rolagem
             javax.swing.JScrollPane scrollPane = new javax.swing.JScrollPane(tabelaHistorico);
 
-            // Campo de pesquisa
+            // Campo
             javax.swing.JTextField campoPesquisa = new javax.swing.JTextField();
             javax.swing.JPanel painelPesquisa = new javax.swing.JPanel(new java.awt.BorderLayout());
             painelPesquisa.add(new JLabel("Pesquisar: "), java.awt.BorderLayout.WEST);
