@@ -63,8 +63,6 @@ public class Controller {
         if (sucesso) {
             JOptionPane.showMessageDialog(this.interfaceCadastro, "Cadastro realizado com sucesso!");
             fecharCadastro();
-            abrirMenuPrincipal();
-            fecharTelaInicial();
         } else {
             JOptionPane.showMessageDialog(this.interfaceCadastro, "Erro ao realizar o cadastro. Tente novamente.");
         }
