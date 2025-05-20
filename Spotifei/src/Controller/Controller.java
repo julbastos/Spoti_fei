@@ -63,6 +63,7 @@ public class Controller {
         if (sucesso) {
             JOptionPane.showMessageDialog(this.interfaceCadastro, "Cadastro realizado com sucesso!");
             fecharCadastro();
+          
         } else {
             JOptionPane.showMessageDialog(this.interfaceCadastro, "Erro ao realizar o cadastro. Tente novamente.");
         }
@@ -81,7 +82,7 @@ public class Controller {
             fecharLogin();
             fecharTelaInicial();
         } else {
-            JOptionPane.showMessageDialog(this.interfaceLogin, "Erro ao realizar o cadastro. Tente novamente.");
+            JOptionPane.showMessageDialog(this.interfaceLogin, "Erro ao realizar o login. Tente novamente.");
         }
     }
 
@@ -222,7 +223,7 @@ public class Controller {
             // Adicionar a tabela a um JScrollPane para permitir rolagem
             javax.swing.JScrollPane scrollPane = new javax.swing.JScrollPane(tabelaHistorico);
 
-            // Campo
+            // Campo de pesquisa
             javax.swing.JTextField campoPesquisa = new javax.swing.JTextField();
             javax.swing.JPanel painelPesquisa = new javax.swing.JPanel(new java.awt.BorderLayout());
             painelPesquisa.add(new JLabel("Pesquisar: "), java.awt.BorderLayout.WEST);
@@ -298,7 +299,7 @@ public class Controller {
                 btnRemoverDescurtida.addActionListener(e -> {
                     boolean sucesso = Model.CurtidaBanco.avaliarMusica(idUsuario, m.getId(), true);
                     if (sucesso) {
-                        javax.swing.JOptionPane.showMessageDialog(interfaceDescurtidas, "Música marcada!");
+                        javax.swing.JOptionPane.showMessageDialog(interfaceDescurtidas, "Música desmarcada!");
                         carregarDescurtidas();
                     } else {
                         javax.swing.JOptionPane.showMessageDialog(interfaceDescurtidas, "Erro ao atualizar.");
