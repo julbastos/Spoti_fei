@@ -2,7 +2,7 @@
 # Spotifei
 
 ## Desenvolvido por
-Julia Bastos Barreto  
+Júlia Bastos Barreto  
 RA: 22124071-6
 
 ---
