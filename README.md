@@ -278,6 +278,6 @@ Todas usam JDBC para executar comandos SQL.
 
 - O método main da classe Spotifei instancia o Controller, que por sua vez instancia as telas principais.
 - Toda navegação e lógica de negócio passam pelo Controller, atuando como ponte entre View e Database.
-- O banco de dados armazena informações persistentes, como usuários, músicas, curtidas e histórico.
+- O banco de dados armazena informações persistentes, como usuários, músicas, curtidas, playlists e histórico.
 
 ---
